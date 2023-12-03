@@ -3,7 +3,7 @@
     class="w-full p-4 mb-12 bg-base-200 rounded-md shadow shadow-base-300"
     v-if="data.labels"
   >
-    <Bar class="w-full h-60 md:h-96" :data="data" :options="options" />
+    <Bar class="w-full px-4 h-60 md:h-96" :data="data" :options="options" />
   </div>
 </template>
 
@@ -36,7 +36,7 @@ const data = {
   ],
   datasets: [
     {
-      label: "Data One",
+      label: "Spendings",
       backgroundColor: "#f87979",
       data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
     },
