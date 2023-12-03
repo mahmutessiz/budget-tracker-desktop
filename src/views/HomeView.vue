@@ -2,7 +2,7 @@
 import { onMounted, ref } from "vue";
 import { Store } from "tauri-plugin-store-api";
 
-import MainHeader from "../components/MainHeader.vue";
+import WrapperAll from "../components/WrapperAll.vue";
 
 const value = ref();
 onMounted(async () => {
@@ -19,5 +19,5 @@ onMounted(async () => {
 </script>
 
 <template>
-  <MainHeader />
+  <WrapperAll />
 </template>
