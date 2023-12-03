@@ -3,7 +3,7 @@
     <MainHeader />
     <div>
       <BalanceDisplay />
-      <BarChart class="h-96" />
+      <BarChart class="" />
     </div>
   </div>
 </template>
