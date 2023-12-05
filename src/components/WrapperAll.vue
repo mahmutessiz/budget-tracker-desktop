@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex">
     <MainHeader />
-    <div class="w-full lg:w-[50%]">
+    <div class="w-full lg:w-[50%] h-[100vh] overflow-auto">
       <BalanceDisplay />
       <BarChart class="" />
       <DoughnutChart class="" />
