@@ -3,7 +3,11 @@
     class="w-full p-4 mb-12 bg-base-200 rounded-md shadow shadow-base-300"
     v-if="data.labels"
   >
-    <Bar class="w-full px-4 h-60 md:h-96" :data="data" :options="options" />
+    <Bar
+      class="w-full px-4 h-60 md:max-h-[15rem]"
+      :data="data"
+      :options="options"
+    />
   </div>
 </template>
 
@@ -45,7 +49,7 @@ const data = {
 
 const options = {
   responsive: true,
-  maintainAspectRatio: false,
+  maintainAspectRatio: true,
 };
 
 ChartJS.register(

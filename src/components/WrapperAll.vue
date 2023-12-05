@@ -1,9 +1,10 @@
 <template>
   <div class="w-full flex">
     <MainHeader />
-    <div>
+    <div class="w-full lg:w-[50%]">
       <BalanceDisplay />
       <BarChart class="" />
+      <DoughnutChart class="" />
     </div>
   </div>
 </template>
@@ -12,4 +13,5 @@
 import BalanceDisplay from "./containers/BalanceDisplay.vue";
 import MainHeader from "./MainHeader.vue";
 import BarChart from "./charts/BarChart.vue";
+import DoughnutChart from "./charts/DoughnutChart.vue";
 </script>
