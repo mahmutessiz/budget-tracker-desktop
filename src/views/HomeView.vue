@@ -17,7 +17,7 @@ const comp = computed(() => {
 });
 
 onMounted(async () => {
-  const store = new Store<Data>(".settings.dat");
+  const store = new Store(".settings.dat");
 
   await store.set("some-key", { value: 5 });
   await store.set("income", {
@@ -44,6 +44,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  {{ comp.income?.value2 }}
+  <!--  {{ comp.income?.value2 }} -->
+
   <WrapperAll />
 </template>
