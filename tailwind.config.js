@@ -12,9 +12,10 @@ export default {
       "default",
       "cupcake",
       "cyberpunk",
-      "aqua",
+      "bumblebee",
       "retro",
       "valentine",
+      "halloween",
     ],
   },
 };
