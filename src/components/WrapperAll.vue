@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-wrap overflow-auto">
+  <div class="w-full flex flex-wrap lg:flex-nowrap overflow-x-hidden">
     <MainHeader class="fixed z-10 w-32" />
     <div class="w-full md:w-[80%] lg:w-[70%] overflow-x-hidden ml-36">
       <BalanceDisplay />
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div
-      class="w-full lg:w-auto flex lg:flex-col justify-center items-center gap-12 mt-12 mb-12 ml-36 lg:ml-2"
+      class="w-full lg:w-[25%] flex lg:flex-col justify-center items-center gap-12 mt-12 mb-12 ml-36 lg:ml-8"
     >
       <TableIncome class="" />
       <TableExpense class="" />
