@@ -9,7 +9,9 @@
         <LineChart class="md:w-[50%]" />
       </div>
     </div>
-    <div class="flex lg:flex-col gap-12 mt-12 ml-36 lg:ml-2">
+    <div
+      class="w-full lg:w-auto flex lg:flex-col justify-center items-center gap-12 mt-12 mb-12 ml-36 lg:ml-2"
+    >
       <TableIncome class="" />
       <TableExpense class="" />
     </div>
