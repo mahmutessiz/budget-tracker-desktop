@@ -44,7 +44,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <!--  {{ comp.income?.value2 }} -->
+  {{ comp.income?.value2 }}
 
   <WrapperAll />
 </template>
