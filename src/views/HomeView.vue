@@ -1,5 +1,15 @@
 <script setup lang="ts">
 import WrapperAll from "../components/WrapperAll.vue";
+import { ref, onMounted } from "vue";
+import { Store } from "tauri-plugin-store-api";
+
+const value = ref();
+onMounted(async () => {
+  const store = new Store(".budget.dat");
+  store.onChange(async () => {
+    value.value = await store.get("income");
+  });
+});
 /* import { onMounted, ref, computed, Ref } from "vue";
 import { Store } from "tauri-plugin-store-api";
 
@@ -45,6 +55,6 @@ onMounted(async () => {
 
 <template>
   <!--   {{ comp.income?.value2 }} -->
-
+  {{ value }}
   <WrapperAll />
 </template>

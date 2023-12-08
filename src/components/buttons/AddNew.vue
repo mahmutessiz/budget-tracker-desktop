@@ -21,7 +21,9 @@
         tabindex="0"
         class="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52"
       >
-        <li><ExpenseButton /></li>
+        <li>
+          <ExpenseButton />
+        </li>
         <li>
           <IncomeButton />
         </li>
