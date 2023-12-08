@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref, computed, Ref } from "vue";
+import WrapperAll from "../components/WrapperAll.vue";
+/* import { onMounted, ref, computed, Ref } from "vue";
 import { Store } from "tauri-plugin-store-api";
 
-import WrapperAll from "../components/WrapperAll.vue";
 
 interface Data {
   value?: number;
@@ -40,11 +40,11 @@ onMounted(async () => {
 
   await store.save();
   // this manually saves the store, otherwise the store is only saved when your app is closed
-});
+}); */
 </script>
 
 <template>
-  {{ comp.income?.value2 }}
+  <!--   {{ comp.income?.value2 }} -->
 
   <WrapperAll />
 </template>
