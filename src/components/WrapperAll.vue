@@ -10,7 +10,7 @@
       </div>
     </div>
     <div
-      class="w-full lg:w-[28%] flex lg:flex-col justify-center items-center gap-12 mt-12 mb-12 ml-36 lg:ml-8"
+      class="w-full lg:w-[28%] flex lg:flex-col justify-center items-start gap-12 mt-12 mb-12 ml-36 lg:ml-8"
     >
       <TableIncome />
       <TableExpense />

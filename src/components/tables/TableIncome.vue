@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-x-auto">
-    <table class="table table-xs table-zebra">
+    <table class="table table-xs table-zebra" v-if="!value">
       <thead>
         <tr>
           <th></th>
@@ -109,7 +109,46 @@
         </tr>
       </tbody>
     </table>
+    <table class="table table-xs table-zebra" v-if="value">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Date</th>
+          <th>Category</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, i) in value" :key="item">
+          <th>{{ i + 1 }}</th>
+          <td>{{ item.date }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.amount }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import { Store } from "tauri-plugin-store-api";
+
+// Ref to hold the income data
+const value = ref();
+
+onMounted(async () => {
+  // Initialize the store on component mount
+  const store = new Store(".budget.dat");
+
+  // If the value is not already set, retrieve it from the store
+  if (!value.value) {
+    value.value = await store.get("income");
+  }
+
+  // Subscribe to store changes and update the value accordingly
+  store.onChange(async () => {
+    value.value = await store.get("income");
+  });
+});
+</script>
