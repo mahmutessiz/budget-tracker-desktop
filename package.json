@@ -12,6 +12,7 @@
   "dependencies": {
     "@tauri-apps/api": "^1.5.1",
     "chart.js": "^4.4.0",
+    "pinia": "^2.1.7",
     "tauri-plugin-store-api": "github:tauri-apps/tauri-plugin-store#v1",
     "vue": "^3.3.4",
     "vue-chartjs": "^5.2.0",
