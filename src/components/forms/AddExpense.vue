@@ -52,13 +52,13 @@ async function pushexpense() {
   });
 }
 
+// Initialize the store
+const store = new Store(".budget.dat");
+
 /**
  * Add a new expense entry to the store and reset the input fields
  */
 const addexpense = async () => {
-  // Initialize the store
-  const store = new Store(".budget.dat");
-
   // Retrieve the current expense array from the store or initialize it if not present
   if (await store.get("expense")) {
     expense.value = await store.get("expense");

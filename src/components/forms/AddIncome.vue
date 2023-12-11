@@ -52,13 +52,13 @@ async function pushIncome() {
   });
 }
 
+// Initialize the store
+const store = new Store(".budget.dat");
+
 /**
  * Add a new income entry to the store and reset the input fields
  */
 const addIncome = async () => {
-  // Initialize the store
-  const store = await new Store(".budget.dat");
-
   // Retrieve the current income array from the store or initialize it if not present
   if (await store.get("income")) {
     income.value = await store.get("income");
