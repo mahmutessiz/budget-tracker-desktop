@@ -1,6 +1,9 @@
 <template>
   <div class="overflow-x-auto">
     <table class="table table-xs table-zebra" v-if="!expense">
+      <caption class="text-primary-content font-bold text-lg">
+        Expense
+      </caption>
       <thead>
         <tr>
           <th></th>
@@ -110,6 +113,11 @@
       </tbody>
     </table>
     <table class="table table-xs table-zebra" v-if="expense">
+      <caption
+        class="w-full bg-primary text-primary-content font-bold text-lg rounded-sm"
+      >
+        Expense
+      </caption>
       <thead>
         <tr>
           <th></th>
@@ -134,7 +142,7 @@
 import { ref, onMounted } from "vue";
 import { Store } from "tauri-plugin-store-api";
 
-// Ref to hold the income data
+// Ref to hold the expense data
 const expense = ref();
 
 onMounted(async () => {
@@ -143,12 +151,12 @@ onMounted(async () => {
 
   // If the expense is not already set, retrieve it from the store
   if (!expense.value) {
-    expense.value = await store.get("income");
+    expense.value = await store.get("expense");
   }
 
   // Subscribe to store changes and update the expense accordingly
   store.onChange(async () => {
-    expense.value = await store.get("income");
+    expense.value = await store.get("expense");
   });
 });
 </script>

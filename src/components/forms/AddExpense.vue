@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="addIncome" class="flex flex-col gap-4">
+  <form @submit.prevent="addexpense" class="flex flex-col gap-4">
     <div class="flex items-center gap-2">
       <label for="amount" class="text-sm font-semibold text-gray-700"
         >Amount:</label
@@ -24,7 +24,7 @@
         class="input input-bordered input-secondary w-full"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Add Income</button>
+    <button type="submit" class="btn btn-primary">Add expense</button>
   </form>
 </template>
 
@@ -35,17 +35,17 @@ import { Store } from "tauri-plugin-store-api";
 // Get the current date
 const date = new Date();
 
-// Refs to store the income amount and category inputs
+// Refs to store the expense amount and category inputs
 const amount = ref(0);
 const category = ref("");
-// Ref to store the array of income entries
-const income: any = ref([]);
+// Ref to store the array of expense entries
+const expense: any = ref([]);
 
 /**
- * Push a new income entry into the income array
+ * Push a new expense entry into the expense array
  */
-async function pushIncome() {
-  income.value.unshift({
+async function pushexpense() {
+  expense.value.unshift({
     date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate(),
     amount: amount.value,
     category: category.value,
@@ -53,24 +53,24 @@ async function pushIncome() {
 }
 
 /**
- * Add a new income entry to the store and reset the input fields
+ * Add a new expense entry to the store and reset the input fields
  */
-const addIncome = async () => {
+const addexpense = async () => {
   // Initialize the store
   const store = await new Store(".budget.dat");
 
-  // Retrieve the current income array from the store or initialize it if not present
-  if (await store.get("income")) {
-    income.value = await store.get("income");
+  // Retrieve the current expense array from the store or initialize it if not present
+  if (await store.get("expense")) {
+    expense.value = await store.get("expense");
   } else {
-    income.value = [];
+    expense.value = [];
   }
 
-  // Add the new income entry to the array
-  await pushIncome();
+  // Add the new expense entry to the array
+  await pushexpense();
 
-  // Save the updated income array to the store
-  await store.set("income", income.value);
+  // Save the updated expense array to the store
+  await store.set("expense", expense.value);
   await store.save();
 
   // Reset input fields

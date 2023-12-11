@@ -110,6 +110,11 @@
       </tbody>
     </table>
     <table class="table table-xs table-zebra" v-if="value">
+      <caption
+        class="w-full bg-accent text-accent-content font-bold text-lg rounded-sm"
+      >
+        Income
+      </caption>
       <thead>
         <tr>
           <th></th>
