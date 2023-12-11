@@ -36,7 +36,7 @@ import { Store } from "tauri-plugin-store-api";
 const date = new Date();
 
 // Refs to store the income amount and category inputs
-const amount = ref(0);
+const amount = ref();
 const category = ref("");
 // Ref to store the array of income entries
 const income: any = ref([]);

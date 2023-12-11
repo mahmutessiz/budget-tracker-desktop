@@ -1,6 +1,4 @@
 <template>
-  <!--  <button class="btn border-0 bg-accent text-accent-content">Add new</button> -->
-
   <div class="">
     <div class="dropdown">
       <div tabindex="0" role="button" class="btn">

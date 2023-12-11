@@ -3,7 +3,7 @@
     <div class="flex items-center gap-2">
       <label for="amount" class="text-sm font-semibold text-gray-700"
         >Amount:</label
-      >
+      ><br />
       <input
         id="amount"
         v-model="amount"
@@ -36,7 +36,7 @@ import { Store } from "tauri-plugin-store-api";
 const date = new Date();
 
 // Refs to store the expense amount and category inputs
-const amount = ref(0);
+const amount = ref();
 const category = ref("");
 // Ref to store the array of expense entries
 const expense: any = ref([]);
@@ -57,7 +57,7 @@ async function pushexpense() {
  */
 const addexpense = async () => {
   // Initialize the store
-  const store = await new Store(".budget.dat");
+  const store = new Store(".budget.dat");
 
   // Retrieve the current expense array from the store or initialize it if not present
   if (await store.get("expense")) {
