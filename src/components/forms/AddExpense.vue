@@ -33,36 +33,9 @@ import { ref } from "vue";
 /* import { Store } from "tauri-plugin-store-api"; */
 import { UseAddExpense } from "../utils/addExpense.ts";
 
-/* const date = new Date();  */
-
 const amount = ref();
 const category = ref("");
 const expense: any = ref([]);
 
 const addexpense = async () => await UseAddExpense(expense, amount, category);
-/* async function pushexpense() {
-  expense.value.unshift({
-    date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
-    amount: amount.value,
-    category: category.value,
-  });
-}
-
-const store = new Store(".budget.dat");
-
-const addexpense = async () => {
-  if (await store.get("expense")) {
-    expense.value = await store.get("expense");
-  } else {
-    expense.value = [];
-  }
-
-  await pushexpense();
-
-  await store.set("expense", expense.value);
-  await store.save();
-
-  amount.value = 0;
-  category.value = "";
-}; */
 </script>
