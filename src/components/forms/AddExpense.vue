@@ -30,51 +30,39 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { Store } from "tauri-plugin-store-api";
+/* import { Store } from "tauri-plugin-store-api"; */
+import { UseAddExpense } from "../utils/addExpense.ts";
 
-// Get the current date
-const date = new Date();
+/* const date = new Date();  */
 
-// Refs to store the expense amount and category inputs
 const amount = ref();
 const category = ref("");
-// Ref to store the array of expense entries
 const expense: any = ref([]);
 
-/**
- * Push a new expense entry into the expense array
- */
-async function pushexpense() {
+const addexpense = async () => await UseAddExpense(expense, amount, category);
+/* async function pushexpense() {
   expense.value.unshift({
-    date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate(),
+    date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
     amount: amount.value,
     category: category.value,
   });
 }
 
-// Initialize the store
 const store = new Store(".budget.dat");
 
-/**
- * Add a new expense entry to the store and reset the input fields
- */
 const addexpense = async () => {
-  // Retrieve the current expense array from the store or initialize it if not present
   if (await store.get("expense")) {
     expense.value = await store.get("expense");
   } else {
     expense.value = [];
   }
 
-  // Add the new expense entry to the array
   await pushexpense();
 
-  // Save the updated expense array to the store
   await store.set("expense", expense.value);
   await store.save();
 
-  // Reset input fields
   amount.value = 0;
   category.value = "";
-};
+}; */
 </script>
