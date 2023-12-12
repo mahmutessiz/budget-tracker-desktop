@@ -8,6 +8,7 @@
         id="amount"
         v-model="amount"
         type="number"
+        step="0.01"
         required
         class="input input-bordered input-primary w-full"
       />
@@ -31,11 +32,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 /* import { Store } from "tauri-plugin-store-api"; */
-import { UseAddExpense } from "../utils/addExpense.ts";
+import { useAddExpense } from "../utils/addExpense.ts";
 
 const amount = ref();
 const category = ref("");
 const expense: any = ref([]);
 
-const addexpense = async () => await UseAddExpense(expense, amount, category);
+const addexpense = async () => await useAddExpense(expense, amount, category);
 </script>
