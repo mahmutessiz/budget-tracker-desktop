@@ -30,10 +30,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { Store } from "tauri-plugin-store-api";
-
-// Get the current date
-const date = new Date();
+import { useAddIncome } from "../utils/addIncome.ts";
 
 // Refs to store the income amount and category inputs
 const amount = ref();
@@ -41,40 +38,5 @@ const category = ref("");
 // Ref to store the array of income entries
 const income: any = ref([]);
 
-/**
- * Push a new income entry into the income array
- */
-async function pushIncome() {
-  income.value.unshift({
-    date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate(),
-    amount: amount.value,
-    category: category.value,
-  });
-}
-
-// Initialize the store
-const store = new Store(".budget.dat");
-
-/**
- * Add a new income entry to the store and reset the input fields
- */
-const addIncome = async () => {
-  // Retrieve the current income array from the store or initialize it if not present
-  if (await store.get("income")) {
-    income.value = await store.get("income");
-  } else {
-    income.value = [];
-  }
-
-  // Add the new income entry to the array
-  await pushIncome();
-
-  // Save the updated income array to the store
-  await store.set("income", income.value);
-  await store.save();
-
-  // Reset input fields
-  amount.value = 0;
-  category.value = "";
-};
+const addIncome = async () => await useAddIncome(income, amount, category);
 </script>

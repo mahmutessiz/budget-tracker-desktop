@@ -1,18 +1,30 @@
 import { Store } from "tauri-plugin-store-api";
 import { Ref } from "vue";
+
+interface ExpenseEntry {
+  date: string;
+  amount: number;
+  category: string;
+}
+
 /**
- * Push a new expense entry into the expense array
+ * Push a new expense entry into the expense array.
+ * @param expense - Reference to the expense array.
+ * @param amount - Reference to the amount input field.
+ * @param category - Reference to the category input field.
  */
-async function pushexpense(
-  expense: Ref<any>,
+async function pushExpense(
+  expense: Ref<ExpenseEntry[]>,
   amount: Ref<number>,
   category: Ref<string>
-) {
-  // Get the current date
-  const date = new Date();
+): Promise<void> {
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getFullYear()}-${
+    currentDate.getMonth() + 1
+  }-${currentDate.getDate()}`;
 
   expense.value.unshift({
-    date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate(),
+    date: formattedDate,
     amount: amount.value,
     category: category.value,
   });
@@ -22,22 +34,21 @@ async function pushexpense(
 const store = new Store(".budget.dat");
 
 /**
- * Add a new expense entry to the store and reset the input fields
+ * Add a new expense entry to the store and reset the input fields.
+ * @param expense - Reference to the expense array.
+ * @param amount - Reference to the amount input field.
+ * @param category - Reference to the category input field.
  */
-const UseAddExpense = async (
-  expense: Ref<any>,
+const useAddExpense = async (
+  expense: Ref<ExpenseEntry[]>,
   amount: Ref<number>,
   category: Ref<string>
-) => {
+): Promise<void> => {
   // Retrieve the current expense array from the store or initialize it if not present
-  if (await store.get("expense")) {
-    expense.value = await store.get("expense");
-  } else {
-    expense.value = [];
-  }
+  expense.value = (await store.get("expense")) || [];
 
   // Add the new expense entry to the array
-  await pushexpense(expense, amount, category);
+  await pushExpense(expense, amount, category);
 
   // Save the updated expense array to the store
   await store.set("expense", expense.value);
@@ -48,4 +59,4 @@ const UseAddExpense = async (
   category.value = "";
 };
 
-export { UseAddExpense };
+export { useAddExpense };
