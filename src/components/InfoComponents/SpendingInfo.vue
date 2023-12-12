@@ -1,7 +1,7 @@
 <template>
   <div class="stats bg-primary text-primary-content">
     <div class="stat">
-      <div class="stat-title text-primary-content">Account balance</div>
+      <div class="stat-title text-primary-content">Total spending</div>
       <div class="stat-value text-primary-content">
         ${{ totalExpense ? totalExpense.toLocaleString() : 0 }}
       </div>
