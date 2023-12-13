@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-fit flex flex-wrap justify-between py-8 px-4 gap-4">
+  <div class="w-full h-fit flex flex-wrap justify-between py-8 gap-4">
     <BalanceInfo />
     <SpendingInfo />
   </div>

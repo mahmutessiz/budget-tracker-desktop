@@ -92,9 +92,58 @@
             value="halloween"
           />
         </li>
+        <li>
+          <input
+            type="radio"
+            name="theme-dropdown"
+            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+            aria-label="Dim"
+            value="dim"
+          />
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, onMounted, Ref } from "vue";
+import { Store } from "tauri-plugin-store-api";
+
+const theme: Ref<any> = ref("valentine"); // default theme
+
+onMounted(async () => {
+  const store = new Store(".budget.dat");
+  // Check if the theme is stored
+  const storedTheme = await store.get("theme");
+
+  if (storedTheme !== null) {
+    // If a theme is stored, update our theme ref with the stored value
+    theme.value = storedTheme;
+  } else {
+    // If no theme is stored, set the default theme in the store
+    await store.set("theme", theme.value);
+  }
+
+  const htmlElement = document.querySelector("html");
+  if (htmlElement !== null) {
+    htmlElement.dataset.theme = theme.value;
+  }
+
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach((radio) => {
+    radio.addEventListener("change", async (event) => {
+      const target = event.target as HTMLInputElement;
+      if (target && target.checked) {
+        // Update the theme value and store it
+        theme.value = target.value;
+        await store.set("theme", theme.value);
+        const htmlElement = document.querySelector("html");
+        if (htmlElement) {
+          htmlElement.dataset.theme = theme.value;
+        }
+      }
+    });
+  });
+});
+</script>

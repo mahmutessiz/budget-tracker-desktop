@@ -37,7 +37,7 @@
         "fullscreen": false,
         "resizable": true,
         "title": "budget-tracker",
-        "width": 800,
+        "width": 815,
         "height": 600,
         "alwaysOnTop": true
       }
