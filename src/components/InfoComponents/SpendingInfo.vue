@@ -21,6 +21,7 @@ import { Store } from "tauri-plugin-store-api";
 // Ref to hold the expense data
 const expense = ref();
 const totalExpense = ref();
+
 onMounted(async () => {
   // Initialize the store on component mount
   const store = new Store(".budget.dat");

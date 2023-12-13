@@ -3,7 +3,11 @@
     <div class="stat text-accent-content">
       <div class="stat-title text-accent-content">Current balance</div>
       <div class="stat-value text-accent-content">
-        ${{ (totalIncome - totalExpense).toLocaleString() }}
+        ${{
+          isNaN(totalIncome - totalExpense)
+            ? 0
+            : (totalIncome - totalExpense).toLocaleString()
+        }}
       </div>
       <div class="stat-actions">
         <button class="btn btn-sm btn-neutral text-neutral-content">
