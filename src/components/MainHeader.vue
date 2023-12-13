@@ -5,7 +5,7 @@
     <ul class="flex flex-col justify-end items-center gap-4 px-4">
       <li class=""><ThemeSwitch /></li>
       <li><AddNew /></li>
-      <li class="btn">Settings</li>
+      <li><SettingsButton /></li>
     </ul>
   </header>
 </template>
@@ -13,4 +13,5 @@
 <script setup lang="ts">
 import ThemeSwitch from "./buttons/ThemeSwitch.vue";
 import AddNew from "./buttons/AddNew.vue";
+import SettingsButton from "./buttons/SettingsButton.vue";
 </script>
