@@ -10,7 +10,10 @@
         }}
       </div>
       <div class="stat-actions">
-        <button class="btn btn-sm btn-neutral text-neutral-content">
+        <button
+          class="btn btn-sm btn-neutral text-neutral-content"
+          onclick="my_modal_3.showModal()"
+        >
           Add funds
         </button>
       </div>
@@ -27,11 +30,23 @@
       </div>
     </div>
   </div>
+
+  <dialog id="my_modal_3" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Hello!</h3>
+      <p class="py-4">Press ESC key or click outside to close</p>
+      <AddIncome />
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { Store } from "tauri-plugin-store-api";
+import AddIncome from "../forms/AddIncome.vue";
 
 // Ref to hold the income data
 const income = ref();

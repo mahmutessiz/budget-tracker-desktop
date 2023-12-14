@@ -6,17 +6,31 @@
         ${{ totalExpense ? totalExpense.toLocaleString() : 0 }}
       </div>
       <div class="stat-actions">
-        <button class="btn btn-sm btn-neutral text-neutral-content">
-          Add funds
+        <button
+          class="btn btn-sm btn-neutral text-neutral-content"
+          onclick="my_modal_4.showModal()"
+        >
+          Add Transaction
         </button>
       </div>
     </div>
   </div>
+  <dialog id="my_modal_4" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Hello!</h3>
+      <p class="py-4">Press ESC key or click outside to close</p>
+      <AddExpense />
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { Store } from "tauri-plugin-store-api";
+import AddExpense from "../forms/AddExpense.vue";
 
 // Ref to hold the expense data
 const expense = ref();
