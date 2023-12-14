@@ -82,6 +82,10 @@ const options: ChartOptions<"doughnut"> = {
       display: true,
       position: "left",
     },
+    title: {
+      display: true,
+      text: "Expense Categories",
+    },
   },
 };
 

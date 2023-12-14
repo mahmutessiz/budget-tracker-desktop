@@ -5,6 +5,7 @@
     <ul class="h-full flex flex-col justify-start items-center gap-4 px-2 py-6">
       <li class=""><ThemeSwitch /></li>
       <li><AddNew /></li>
+      <li><ClearAll /></li>
       <li><SettingsButton /></li>
     </ul>
   </header>
@@ -14,4 +15,5 @@
 import ThemeSwitch from "./buttons/ThemeSwitch.vue";
 import AddNew from "./buttons/AddNew.vue";
 import SettingsButton from "./buttons/SettingsButton.vue";
+import ClearAll from "./buttons/ClearAll.vue";
 </script>

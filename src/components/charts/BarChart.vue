@@ -12,6 +12,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, Ref } from "vue";
+import { Store } from "tauri-plugin-store-api";
+
 import {
   Chart as ChartJS,
   Title,
@@ -23,7 +26,9 @@ import {
 } from "chart.js";
 import { Bar } from "vue-chartjs";
 
-const data = {
+const expenseData: Ref<any> = ref({});
+const incomeData: Ref<any> = ref({});
+const data = ref({
   labels: [
     "January",
     "February",
@@ -50,7 +55,61 @@ const data = {
       data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
     },
   ],
-};
+});
+onMounted(async () => {
+  const store = new Store(".budget.dat");
+  expenseData.value = await store.get("expense");
+  incomeData.value = await store.get("income");
+
+  // Initialize an array with 12 zeros
+  let expenseArray = Array(12).fill(0);
+  let incomeArray = Array(12).fill(0);
+
+  // If there is expense data, update the expenseArray
+  if (expenseData.value) {
+    for (let expense of expenseData.value) {
+      let month = new Date(expense.date).getMonth(); // get the month of the expense
+      expenseArray[month] += expense.amount; // add the expense amount to the corresponding month
+    }
+  }
+
+  // If there is income data, update the incomeArray
+  if (incomeData.value) {
+    for (let income of incomeData.value) {
+      let month = new Date(income.date).getMonth(); // get the month of the income
+      incomeArray[month] += income.amount; // add the income amount to the corresponding month
+    }
+  }
+
+  data.value = {
+    labels: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+    datasets: [
+      {
+        label: "Spendings",
+        backgroundColor: "#f87979",
+        data: expenseArray,
+      },
+      {
+        label: "Incomes",
+        backgroundColor: "#00d8ff",
+        data: incomeArray,
+      },
+    ],
+  };
+});
 
 const options = {
   responsive: true,
