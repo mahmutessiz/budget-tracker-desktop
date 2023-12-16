@@ -44,13 +44,22 @@ onMounted(async () => {
     chartData.value = await store.get("expense");
   }
 
+  // Get the current year
+  let currentYear = new Date().getFullYear();
+
   // Process fetched data to calculate sums for each category
   let summedCategories: { [key: string]: number } = {};
   chartData.value.forEach((item: any) => {
-    if (summedCategories[item.category]) {
-      summedCategories[item.category] += item.amount;
-    } else {
-      summedCategories[item.category] = item.amount;
+    let date = new Date(item.date);
+    let year = date.getFullYear(); // get the year of the expense
+
+    // Only add the expense amount to the corresponding category if it's in the current year
+    if (year === currentYear) {
+      if (summedCategories[item.category]) {
+        summedCategories[item.category] += item.amount;
+      } else {
+        summedCategories[item.category] = item.amount;
+      }
     }
   });
 
