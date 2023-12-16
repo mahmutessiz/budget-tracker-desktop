@@ -48,11 +48,20 @@ onMounted(async () => {
   // Initialize an array with 12 zeros
   let expenseArray = Array(12).fill(0);
 
+  // Get the current year
+  let currentYear = new Date().getFullYear();
+
   // If there is expense data, update the expenseArray
   if (expenseData.value) {
     for (let expense of expenseData.value) {
-      let month = new Date(expense.date).getMonth(); // get the month of the expense
-      expenseArray[month] += expense.amount; // add the expense amount to the corresponding month
+      let date = new Date(expense.date);
+      let year = date.getFullYear(); // get the year of the expense
+      let month = date.getMonth(); // get the month of the expense
+
+      // Only add the expense amount to the corresponding month if it's in the current year
+      if (year === currentYear) {
+        expenseArray[month] += expense.amount;
+      }
     }
   }
 
