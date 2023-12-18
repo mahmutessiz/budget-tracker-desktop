@@ -11,7 +11,7 @@
         </div>
       </div>
       <div
-        class="w-full lg:w-[15%] flex lg:flex-col justify-center items-start gap-12 mt-12 mb-12 lg:ml-8"
+        class="w-full lg:w-[18%] flex lg:flex-col justify-center items-start gap-12 mt-12 mb-12 lg:ml-8"
       >
         <TableIncome />
         <TableExpense />
