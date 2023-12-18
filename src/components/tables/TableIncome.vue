@@ -129,6 +129,7 @@
           <td>{{ item.date }}</td>
           <td>{{ item.category }}</td>
           <td>{{ item.amount }}</td>
+          <td><button @click="deleteRow(i)">Delete</button></td>
         </tr>
       </tbody>
     </table>
@@ -142,10 +143,10 @@ import { Store } from "tauri-plugin-store-api";
 // Ref to hold the income data
 const value = ref();
 
-onMounted(async () => {
-  // Initialize the store on component mount
-  const store = new Store(".budget.dat");
+// Initialize the store on component mount
+const store = new Store(".budget.dat");
 
+onMounted(async () => {
   // If the value is not already set, retrieve it from the store
   if (!value.value) {
     value.value = await store.get("income");
@@ -156,4 +157,10 @@ onMounted(async () => {
     value.value = await store.get("income");
   });
 });
+
+// Function to delete a row
+const deleteRow = async (index: number) => {
+  value.value.splice(index, 1);
+  await store.set("income", value.value);
+};
 </script>
