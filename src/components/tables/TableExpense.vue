@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x-auto">
+  <div class="overflow-x-auto max-h-96">
     <table class="table table-xs table-zebra" v-if="!expense">
       <caption class="text-primary-content font-bold text-lg">
         Expense
