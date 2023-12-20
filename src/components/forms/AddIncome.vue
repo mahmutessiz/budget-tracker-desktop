@@ -24,7 +24,7 @@
         class="input input-bordered input-secondary w-full"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Add Income</button>
+    <button type="submit" class="btn btn-accent">Add Income</button>
   </form>
 </template>
 

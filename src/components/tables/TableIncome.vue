@@ -126,6 +126,65 @@
           <th>Date</th>
           <th>Category</th>
           <th>Amount</th>
+          <th>
+            <button type="button" onclick="my_modal_table.showModal()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                >
+                  <g stroke-dasharray="12" stroke-dashoffset="12">
+                    <path d="M12 7V17">
+                      <animate
+                        fill="freeze"
+                        attributeName="stroke-dashoffset"
+                        begin="0.8s"
+                        dur="0.2s"
+                        values="12;0"
+                      />
+                    </path>
+                    <path d="M7 12H17">
+                      <animate
+                        fill="freeze"
+                        attributeName="stroke-dashoffset"
+                        begin="0.6s"
+                        dur="0.2s"
+                        values="12;0"
+                      />
+                    </path>
+                  </g>
+                  <path
+                    fill="currentColor"
+                    fill-opacity="0"
+                    stroke-dasharray="64"
+                    stroke-dashoffset="64"
+                    d="M4 12V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"
+                  >
+                    <animate
+                      fill="freeze"
+                      attributeName="stroke-dashoffset"
+                      dur="0.5s"
+                      values="64;0"
+                    />
+                    <animate
+                      fill="freeze"
+                      attributeName="fill-opacity"
+                      begin="1s"
+                      dur="0.15s"
+                      values="0;0.3"
+                    />
+                  </path>
+                </g>
+              </svg>
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -157,11 +216,22 @@
       </tbody>
     </table>
   </div>
+  <dialog id="my_modal_table" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Hello!</h3>
+      <p class="py-4">Press ESC key or click outside to close</p>
+      <AddIncome />
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { Store } from "tauri-plugin-store-api";
+import AddIncome from "../forms/AddIncome.vue";
 
 // Ref to hold the income data
 const value = ref();
