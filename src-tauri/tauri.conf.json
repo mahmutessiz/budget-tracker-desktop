@@ -26,7 +26,8 @@
         "icons/logo.png",
         "icons/logo.png",
         "icons/favicone.ico"
-      ]
+      ],
+      "publisher": "MhmtEssz"
     },
     "security": {
       "csp": null
