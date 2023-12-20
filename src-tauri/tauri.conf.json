@@ -21,12 +21,7 @@
       "active": true,
       "targets": "all",
       "identifier": "com.tauri.build",
-      "icon": [
-        "icons/logo.png",
-        "icons/logo.png",
-        "icons/logo.png",
-        "icons/favicone.ico"
-      ],
+      "icon": ["icons/logo.png", "icons/favicone.ico"],
       "publisher": "MhmtEssz"
     },
     "security": {
