@@ -22,7 +22,7 @@
       "targets": "all",
       "identifier": "com.tauri.build",
       "icon": ["icons/logo.png", "icons/favicone.ico"],
-      "publisher": "MhmtEssz"
+      "publisher": "mhmtEssz"
     },
     "security": {
       "csp": null

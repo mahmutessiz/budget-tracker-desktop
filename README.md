@@ -1,6 +1,66 @@
-# Tauri + Vue 3 + TypeScript
+# Budget Tracker App
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Table of Contents
+
+1. Overview
+2. Features
+3. Installation
+4. Usage
+5. Support & Contribution
+
+## Overview
+
+Budget Tracker is a lightweight, fast, and user-friendly application to manage your finances. Built with Tauri, Vue.js, and ts-tauri-plugin-store, it offers a seamless experience for tracking income and expenses. With an installation size of just 6MB, it's lightweight and operates offline.
+
+![Alt text](./public/ss/budget1.png)
+
+## Features
+
+- **Tauri + Vue.js Integration:** A powerful combination ensuring a responsive UI and robust performance.
+- **ts-tauri-plugin-store:** Enables efficient data storage and retrieval.
+- **Offline Operation:** Manage your budget anytime, anywhere without the need for an internet connection.
+- **Theme Options:** Customize the look of your app with various theme options to suit your aesthetic preferences.
+
+## Installation
+
+1. Clone the repository:
+
+   ```sh
+   git clone 1
+
+   ```
+
+2. Navigate to the project directory:
+   cd budget-tracker
+
+3. Install dependencies:
+   npm install
+
+4. Build the app:
+   npm run build
+
+## Usage
+
+Launch the app and start managing your budget immediately! Add income sources and expenses to track your financial health in real-time.
+
+## Adding Transactions
+
+Click on “Add Transaction” to input new income or expense items.
+
+## Viewing Statistics
+
+Explore graphical representations of your financial data through various charts available on the dashboard.
+
+![Alt text](./public/ss/budget2.png)
+
+## Themes
+
+![Alt text](./public/ss/budget4.png)
+
+Support & Contribution
+Feel free to fork this project, contribute or suggest any features via issues.
+
+Happy Budgeting!
 
 ## Recommended IDE Setup
 
