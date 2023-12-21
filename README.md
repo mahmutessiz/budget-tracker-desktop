@@ -60,6 +60,8 @@ Launch the app and start managing your budget immediately! Add income sources an
 
 Click on “Add Transaction” to input new income or expense items.
 
+![Alt text](./public/ss/budget3.png)
+
 ## Viewing Statistics
 
 Explore graphical representations of your financial data through various charts available on the dashboard.
