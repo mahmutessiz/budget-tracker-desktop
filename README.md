@@ -31,15 +31,24 @@ Budget Tracker is a lightweight, fast, and user-friendly application to manage y
    ```
 
 2. Navigate to the project directory:
+
+```sh
    cd budget-tracker
+```
 
 3. Install dependencies:
+
+```sh
    npm install
+```
 
 4. Build the app:
-   npm run build
 
-## Or download the app directly
+```sh
+   npm run build
+```
+
+# Or download the app directly
 
 Download the latest release here: https://github.com/mahmutessiz/budget-tracker-desktop/releases.
 
