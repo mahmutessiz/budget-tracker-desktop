@@ -39,6 +39,10 @@ Budget Tracker is a lightweight, fast, and user-friendly application to manage y
 4. Build the app:
    npm run build
 
+## Or download the app directly
+
+Download the latest release here: https://github.com/mahmutessiz/budget-tracker-desktop/releases.
+
 ## Usage
 
 Launch the app and start managing your budget immediately! Add income sources and expenses to track your financial health in real-time.
