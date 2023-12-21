@@ -26,7 +26,7 @@ Budget Tracker is a lightweight, fast, and user-friendly application to manage y
 1. Clone the repository:
 
    ```sh
-   git clone 1
+   git clone https://github.com/mahmutessiz/budget-tracker-desktop.git
 
    ```
 
