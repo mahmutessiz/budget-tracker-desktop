@@ -48,7 +48,7 @@ Budget Tracker is a lightweight, fast, and user-friendly application to manage y
    npm run build
 ```
 
-# Or download the app directly
+### Or download the app directly
 
 Download the latest release here: https://github.com/mahmutessiz/budget-tracker-desktop/releases.
 
