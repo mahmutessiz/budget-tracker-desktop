@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-x-auto max-h-96">
-    <table class="table table-xs table-zebra" v-if="!value">
+    <table class="table table-xs table-zebra" v-if="!strinc">
       <caption
         class="w-full bg-accent text-accent-content font-bold text-lg rounded-sm"
       >
@@ -114,7 +114,7 @@
         </tr>
       </tbody>
     </table>
-    <table class="table table-xs table-zebra" v-if="value">
+    <table class="table table-xs table-zebra" v-if="strinc">
       <caption
         class="w-full bg-accent text-accent-content font-bold text-lg rounded-sm"
       >
@@ -188,7 +188,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, i) in value" :key="item">
+        <tr v-for="(item, i) in strinc" :key="item">
           <th>{{ i + 1 }}</th>
           <td>{{ item.date }}</td>
           <td>{{ item.category }}</td>
@@ -232,28 +232,28 @@
 import { ref, onMounted } from "vue";
 import { Store } from "tauri-plugin-store-api";
 import AddIncome from "../forms/AddIncome.vue";
+import { useIncomeStore } from "../../store/incomeStore";
 
 // Ref to hold the income data
-const value = ref();
-
+const strinc = ref();
+const { getIncome } = useIncomeStore();
 // Initialize the store on component mount
 const store = new Store(".budget.dat");
 
 onMounted(async () => {
-  // If the value is not already set, retrieve it from the store
-  if (!value.value) {
-    value.value = await store.get("income");
+  if (!strinc.value) {
+    strinc.value = await getIncome();
   }
 
   // Subscribe to store changes and update the value accordingly
   store.onChange(async () => {
-    value.value = await store.get("income");
+    strinc.value = await store.get("income");
   });
 });
 
 // Function to delete a row
 const deleteRow = async (index: number) => {
-  value.value.splice(index, 1);
-  await store.set("income", value.value);
+  strinc.value.splice(index, 1);
+  await store.set("income", strinc.value);
 };
 </script>
