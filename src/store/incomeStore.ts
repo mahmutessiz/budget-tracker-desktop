@@ -10,7 +10,7 @@ export const useIncomeStore = defineStore("income", () => {
   async function getIncome() {
     if (!income.value.length) {
       income.value = await store.get("income");
-      return income.value;
+      /*  return income.value; */
     }
   }
 

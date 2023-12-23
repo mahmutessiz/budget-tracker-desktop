@@ -236,13 +236,14 @@ import { useIncomeStore } from "../../store/incomeStore";
 
 // Ref to hold the income data
 const strinc = ref();
-const { getIncome } = useIncomeStore();
+const getIncome = useIncomeStore();
 // Initialize the store on component mount
 const store = new Store(".budget.dat");
 
 onMounted(async () => {
+  await getIncome.getIncome();
   if (!strinc.value) {
-    strinc.value = await getIncome();
+    strinc.value = getIncome.income;
   }
 
   // Subscribe to store changes and update the value accordingly
