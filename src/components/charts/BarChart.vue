@@ -3,6 +3,7 @@
     class="w-full p-4 mb-12 bg-base-200 rounded-md shadow shadow-base-300"
     v-if="data.labels"
   >
+    <!-- Bar chart to display income and spendings data -->
     <Bar
       class="w-full px-4 h-60 md:max-h-[15rem]"
       :data="data"
@@ -14,7 +15,6 @@
 <script setup lang="ts">
 import { ref, onMounted, Ref } from "vue";
 import { Store } from "tauri-plugin-store-api";
-import { useIncomeStore } from "../../store/incomeStore";
 
 import {
   Chart as ChartJS,
@@ -27,8 +27,7 @@ import {
 } from "chart.js";
 import { Bar } from "vue-chartjs";
 
-const expenseData: Ref<any> = ref({});
-const incomeData: Ref<any> = ref({});
+// Chart data representation
 const data = ref({
   labels: [
     "January",
@@ -57,35 +56,43 @@ const data = ref({
     },
   ],
 });
+
+// References to the expense and income data
+const expenseData: Ref<any> = ref({});
+const incomeData: Ref<any> = ref({});
+const incomeData2 = defineProps({
+  incomeData: { type: Object, default: () => {} },
+});
+
+// Data store initialization
 const store = new Store(".budget.dat");
 
 onMounted(async () => {
-  /*   incomeData.value = await store.get("income"); */
-  await useIncomeStore().getIncome();
-  incomeData.value = useIncomeStore().income;
-
+  // Fetch income data from props and expense data from the store
+  incomeData.value = incomeData2.incomeData;
   expenseData.value = await store.get("expense");
 
-  // Initialize an array with 12 zeros
+  // Initialize an array with 12 zeros for expenses and incomes
   let expenseArray = Array(12).fill(0);
   let incomeArray = Array(12).fill(0);
 
-  // If there is expense data, update the expenseArray
+  // Populate the expenseArray with data from expenseData
   if (expenseData.value) {
     for (let expense of expenseData.value) {
-      let month = new Date(expense.date).getMonth(); // get the month of the expense
-      expenseArray[month] += expense.amount; // add the expense amount to the corresponding month
+      let month = new Date(expense.date).getMonth();
+      expenseArray[month] += expense.amount;
     }
   }
 
-  // If there is income data, update the incomeArray
+  // Populate the incomeArray with data from incomeData
   if (incomeData.value) {
     for (let income of incomeData.value) {
-      let month = new Date(income.date).getMonth(); // get the month of the income
-      incomeArray[month] += income.amount; // add the income amount to the corresponding month
+      let month = new Date(income.date).getMonth();
+      incomeArray[month] += income.amount;
     }
   }
 
+  // Update the chart data with the new expense and income arrays
   data.value = {
     labels: [
       "January",
@@ -116,11 +123,13 @@ onMounted(async () => {
   };
 });
 
+// Chart options configuration
 const options = {
   responsive: true,
   maintainAspectRatio: true,
 };
 
+// Register required components for ChartJS
 ChartJS.register(
   CategoryScale,
   LinearScale,

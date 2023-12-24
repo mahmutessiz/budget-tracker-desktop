@@ -1,10 +1,13 @@
 <template>
-  <div class="w-full flex flex-wrap lg:flex-nowrap overflow-x-hidden">
+  <div
+    class="w-full flex flex-wrap lg:flex-nowrap overflow-x-hidden"
+    v-if="!isLoading"
+  >
     <MainHeader class="fixed z-10 w-32" />
     <div class="w-full flex flex-wrap lg:flex-nowrap justify-center ml-32">
       <div class="w-full lg:w-[70%] overflow-x-hidden px-4">
         <BalanceDisplay />
-        <BarChart />
+        <BarChart :incomeData="incomeData" />
         <div class="flex flex-wrap lg:flex-nowrap gap-4 md:gap-8 mt-12">
           <DoughnutChart class="lg:w-[50%]" />
           <LineChart class="lg:w-[50%]" />
@@ -14,7 +17,7 @@
         class="w-full lg:w-[18%] flex lg:flex-col justify-center items-start gap-12 mt-12 mb-12 lg:ml-8"
       >
         <!-- Only render the TableIncome component when the data is loaded -->
-        <TableIncome v-if="!isLoading" :incomeData="incomeData" />
+        <TableIncome :incomeData="incomeData" />
         <TableExpense />
       </div>
     </div>
