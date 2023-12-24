@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-x-auto max-h-96">
-    <table class="table table-xs table-zebra" v-if="!strinc">
+    <table class="table table-xs table-zebra" v-if="!incomes">
       <caption
         class="w-full bg-accent text-accent-content font-bold text-lg rounded-sm"
       >
@@ -114,7 +114,7 @@
         </tr>
       </tbody>
     </table>
-    <table class="table table-xs table-zebra" v-if="strinc">
+    <table class="table table-xs table-zebra" v-if="incomes">
       <caption
         class="w-full bg-accent text-accent-content font-bold text-lg rounded-sm"
       >
@@ -188,7 +188,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, i) in strinc" :key="item">
+        <tr v-for="(item, i) in incomes" :key="item">
           <th>{{ i + 1 }}</th>
           <td>{{ item.date }}</td>
           <td>{{ item.category }}</td>
@@ -232,29 +232,29 @@
 import { ref, onMounted } from "vue";
 import { Store } from "tauri-plugin-store-api";
 import AddIncome from "../forms/AddIncome.vue";
-import { useIncomeStore } from "../../store/incomeStore";
 
-// Ref to hold the income data
-const strinc = ref();
-const getIncome = useIncomeStore();
 // Initialize the store on component mount
 const store = new Store(".budget.dat");
 
+// Ref to hold the income data
+const incomes = ref();
+
+const incomeData = defineProps({
+  incomeData: { type: Object, default: () => {} },
+});
+
 onMounted(async () => {
-  await getIncome.getIncome();
-  if (!strinc.value) {
-    strinc.value = getIncome.income;
-  }
+  incomes.value = incomeData.incomeData;
 
   // Subscribe to store changes and update the value accordingly
   store.onChange(async () => {
-    strinc.value = await store.get("income");
+    incomes.value = await store.get("income");
   });
 });
 
 // Function to delete a row
 const deleteRow = async (index: number) => {
-  strinc.value.splice(index, 1);
-  await store.set("income", strinc.value);
+  incomes.value.splice(index, 1);
+  await store.set("income", incomes.value);
 };
 </script>

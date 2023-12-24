@@ -14,6 +14,7 @@
 <script setup lang="ts">
 import { ref, onMounted, Ref } from "vue";
 import { Store } from "tauri-plugin-store-api";
+import { useIncomeStore } from "../../store/incomeStore";
 
 import {
   Chart as ChartJS,
@@ -56,10 +57,14 @@ const data = ref({
     },
   ],
 });
+const store = new Store(".budget.dat");
+
 onMounted(async () => {
-  const store = new Store(".budget.dat");
+  /*   incomeData.value = await store.get("income"); */
+  await useIncomeStore().getIncome();
+  incomeData.value = useIncomeStore().income;
+
   expenseData.value = await store.get("expense");
-  incomeData.value = await store.get("income");
 
   // Initialize an array with 12 zeros
   let expenseArray = Array(12).fill(0);
