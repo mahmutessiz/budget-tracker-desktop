@@ -234,14 +234,17 @@ import AddExpense from "../forms/AddExpense.vue";
 // Ref to hold the expense data
 const expense = ref();
 
+// Props passed from parent that contains the expense data
+const expenseData = defineProps({
+  expenseData: Object,
+});
+
 // Initialize the store on component mount
 const store = new Store(".budget.dat");
 
 onMounted(async () => {
   // If the expense is not already set, retrieve it from the store
-  if (!expense.value) {
-    expense.value = await store.get("expense");
-  }
+  expense.value = expenseData.expenseData;
 
   // Subscribe to store changes and update the expense accordingly
   store.onChange(async () => {

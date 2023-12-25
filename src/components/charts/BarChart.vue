@@ -60,7 +60,7 @@ const data = ref({
 // References to the expense and income data
 const expenseData: Ref<any> = ref({});
 const incomeData: Ref<any> = ref({});
-const incomeData2 = defineProps({
+const incomeDataProp = defineProps({
   incomeData: { type: Object, default: () => {} },
 });
 
@@ -69,7 +69,7 @@ const store = new Store(".budget.dat");
 
 onMounted(async () => {
   // Fetch income data from props and expense data from the store
-  incomeData.value = incomeData2.incomeData;
+  incomeData.value = incomeDataProp.incomeData;
   expenseData.value = await store.get("expense");
 
   // Initialize an array with 12 zeros for expenses and incomes

@@ -7,18 +7,20 @@
 <script setup lang="ts">
 // Import necessary Vue composition API and Tauri plugin
 import { ref, onMounted } from "vue";
-import { Store } from "tauri-plugin-store-api";
 
 // Import necessary Chart.js components and types
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "vue-chartjs";
 import { ChartOptions } from "chart.js";
 
-// Create a new instance of Store to persist data
-const store = new Store(".budget.dat");
-
 // Refs to hold dynamic data
 const chartData: any = ref();
+
+// Define props for the component that will receive the expense data
+const expenseData = defineProps({
+  expenseData: Object,
+});
+
 const data = ref({
   // Initial chart data with labels and datasets
   labels: ["VueJs", "EmberJs", "ReactJs", "AngularJs"],
@@ -40,9 +42,7 @@ const data = ref({
 // Lifecycle hook to fetch and process data once component is mounted
 onMounted(async () => {
   // Fetch expense data from the store if not already loaded
-  if (!chartData.value) {
-    chartData.value = await store.get("expense");
-  }
+  chartData.value = expenseData.expenseData;
 
   // Get the current year
   let currentYear = new Date().getFullYear();

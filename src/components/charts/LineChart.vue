@@ -9,7 +9,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, Ref } from "vue";
-import { Store } from "tauri-plugin-store-api";
 
 import {
   Chart as ChartJS,
@@ -24,6 +23,11 @@ import {
 import { Line } from "vue-chartjs";
 
 const expenseData: Ref<any> = ref({});
+// Define props for the component that will receive the expense data
+const expenseDataProps = defineProps({
+  expenseData: Object,
+});
+
 const data = ref({
   labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
@@ -42,8 +46,7 @@ const data = ref({
 });
 
 onMounted(async () => {
-  const store = new Store(".budget.dat");
-  expenseData.value = await store.get("expense");
+  expenseData.value = expenseDataProps.expenseData;
 
   // Initialize an array with 12 zeros
   let expenseArray = Array(12).fill(0);

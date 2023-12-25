@@ -9,8 +9,8 @@
         <BalanceDisplay />
         <BarChart :incomeData="incomeData" />
         <div class="flex flex-wrap lg:flex-nowrap gap-4 md:gap-8 mt-12">
-          <DoughnutChart class="lg:w-[50%]" />
-          <LineChart class="lg:w-[50%]" />
+          <DoughnutChart :expenseData="expenseData" class="lg:w-[50%]" />
+          <LineChart :expenseData="expenseData" class="lg:w-[50%]" />
         </div>
       </div>
       <div
@@ -18,7 +18,7 @@
       >
         <!-- Only render the TableIncome component when the data is loaded -->
         <TableIncome :incomeData="incomeData" />
-        <TableExpense />
+        <TableExpense :expenseData="expenseData" />
       </div>
     </div>
   </div>
@@ -38,15 +38,19 @@ import TableExpense from "./tables/TableExpense.vue";
 
 // Importing store to handle income data
 import { useIncomeStore } from "../store/incomeStore";
+import { useExpenseStore } from "../store/expenseStore";
 
 // Reactive references to hold income data and loading state
 const incomeData = ref([]);
+const expenseData = ref([]);
 const isLoading: Ref<boolean> = ref(true);
 
 // Fetch income data on component mount
 onMounted(async () => {
   await useIncomeStore().getIncome();
   incomeData.value = useIncomeStore().income;
+  await useExpenseStore().getExpense();
+  expenseData.value = useExpenseStore().expenseData;
   isLoading.value = false; // Set loading state to false once the data is loaded
 });
 </script>
