@@ -13,8 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, Ref } from "vue";
-import { Store } from "tauri-plugin-store-api";
+import { ref, onMounted, watchEffect, Ref } from "vue";
 
 import {
   Chart as ChartJS,
@@ -62,65 +61,65 @@ const expenseData: Ref<any> = ref({});
 const incomeData: Ref<any> = ref({});
 const incomeDataProp = defineProps({
   incomeData: { type: Object, default: () => {} },
+  expenseData: { type: Object, default: () => {} },
 });
-
-// Data store initialization
-const store = new Store(".budget.dat");
 
 onMounted(async () => {
   // Fetch income data from props and expense data from the store
-  incomeData.value = incomeDataProp.incomeData;
-  expenseData.value = await store.get("expense");
+  watchEffect(() => {
+    incomeData.value = incomeDataProp.incomeData;
+    expenseData.value = incomeDataProp.expenseData;
 
-  // Initialize an array with 12 zeros for expenses and incomes
-  let expenseArray = Array(12).fill(0);
-  let incomeArray = Array(12).fill(0);
+    // Initialize an array with 12 zeros for expenses and incomes
+    let expenseArray = Array(12).fill(0);
+    let incomeArray = Array(12).fill(0);
 
-  // Populate the expenseArray with data from expenseData
-  if (expenseData.value) {
-    for (let expense of expenseData.value) {
-      let month = new Date(expense.date).getMonth();
-      expenseArray[month] += expense.amount;
+    // Populate the expenseArray with data from expenseData
+    if (expenseData.value) {
+      for (let expense of expenseData.value) {
+        let month = new Date(expense.date).getMonth();
+        expenseArray[month] += expense.amount;
+      }
     }
-  }
 
-  // Populate the incomeArray with data from incomeData
-  if (incomeData.value) {
-    for (let income of incomeData.value) {
-      let month = new Date(income.date).getMonth();
-      incomeArray[month] += income.amount;
+    // Populate the incomeArray with data from incomeData
+    if (incomeData.value) {
+      for (let income of incomeData.value) {
+        let month = new Date(income.date).getMonth();
+        incomeArray[month] += income.amount;
+      }
     }
-  }
 
-  // Update the chart data with the new expense and income arrays
-  data.value = {
-    labels: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ],
-    datasets: [
-      {
-        label: "Spendings",
-        backgroundColor: "#f87979",
-        data: expenseArray,
-      },
-      {
-        label: "Incomes",
-        backgroundColor: "#00d8ff",
-        data: incomeArray,
-      },
-    ],
-  };
+    // Update the chart data with the new expense and income arrays
+    data.value = {
+      labels: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
+      datasets: [
+        {
+          label: "Spendings",
+          backgroundColor: "#f87979",
+          data: expenseArray,
+        },
+        {
+          label: "Incomes",
+          backgroundColor: "#00d8ff",
+          data: incomeArray,
+        },
+      ],
+    };
+  });
 });
 
 // Chart options configuration

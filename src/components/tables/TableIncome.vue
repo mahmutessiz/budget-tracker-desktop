@@ -229,7 +229,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watchEffect } from "vue";
 import { Store } from "tauri-plugin-store-api";
 import AddIncome from "../forms/AddIncome.vue";
 
@@ -243,13 +243,12 @@ const incomeData = defineProps({
   incomeData: { type: Object, default: () => {} },
 });
 
+watchEffect(() => {
+  incomes.value = incomeData.incomeData;
+});
+
 onMounted(async () => {
   incomes.value = incomeData.incomeData;
-
-  // Subscribe to store changes and update the value accordingly
-  store.onChange(async () => {
-    incomes.value = await store.get("income");
-  });
 });
 
 // Function to delete a row

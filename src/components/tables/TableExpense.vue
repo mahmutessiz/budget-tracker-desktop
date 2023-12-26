@@ -227,9 +227,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { Store } from "tauri-plugin-store-api";
+import { ref, onMounted, watchEffect } from "vue";
 import AddExpense from "../forms/AddExpense.vue";
+import { Store } from "tauri-plugin-store-api";
 
 // Ref to hold the expense data
 const expense = ref();
@@ -239,17 +239,17 @@ const expenseData = defineProps({
   expenseData: Object,
 });
 
-// Initialize the store on component mount
+// Watch for changes in the expense data
+watchEffect(() => {
+  expense.value = expenseData.expenseData;
+});
+
+// initialize the store
 const store = new Store(".budget.dat");
 
 onMounted(async () => {
-  // If the expense is not already set, retrieve it from the store
+  // Fetch expense data from parent component
   expense.value = expenseData.expenseData;
-
-  // Subscribe to store changes and update the expense accordingly
-  store.onChange(async () => {
-    expense.value = await store.get("expense");
-  });
 });
 
 // Function to delete a row
