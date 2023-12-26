@@ -42,8 +42,8 @@ import { useExpenseStore } from "../store/expenseStore";
 import { Store } from "tauri-plugin-store-api";
 
 // Reactive references to hold income data and loading state
-const incomeData = ref([]);
-const expenseData = ref([]);
+const incomeData: Ref<any> = ref([]);
+const expenseData: Ref<any> = ref([]);
 const isLoading: Ref<boolean> = ref(true);
 const store = new Store(".budget.dat");
 // Fetch income data on component mount
