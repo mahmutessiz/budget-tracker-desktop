@@ -22,7 +22,7 @@ Budget Tracker is a lightweight, fast, and user-friendly application to manage y
 - **Theme Options:** Customize the look of your app with various theme options to suit your aesthetic preferences.
 
 ## Installation
-
+# Note: If you run it locally via code, you need to have rust installed 
 1. Clone the repository:
 
    ```sh
