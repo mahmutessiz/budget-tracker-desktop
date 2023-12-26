@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, Ref } from "vue";
+import { ref, onMounted, Ref, watchEffect } from "vue";
 
 import {
   Chart as ChartJS,
@@ -46,57 +46,59 @@ const data = ref({
 });
 
 onMounted(async () => {
-  expenseData.value = expenseDataProps.expenseData;
+  watchEffect(() => {
+    expenseData.value = expenseDataProps.expenseData;
 
-  // Initialize an array with 12 zeros
-  let expenseArray = Array(12).fill(0);
+    // Initialize an array with 12 zeros
+    let expenseArray = Array(12).fill(0);
 
-  // Get the current year
-  let currentYear = new Date().getFullYear();
+    // Get the current year
+    let currentYear = new Date().getFullYear();
 
-  // If there is expense data, update the expenseArray
-  if (expenseData.value) {
-    for (let expense of expenseData.value) {
-      let date = new Date(expense.date);
-      let year = date.getFullYear(); // get the year of the expense
-      let month = date.getMonth(); // get the month of the expense
+    // If there is expense data, update the expenseArray
+    if (expenseData.value) {
+      for (let expense of expenseData.value) {
+        let date = new Date(expense.date);
+        let year = date.getFullYear(); // get the year of the expense
+        let month = date.getMonth(); // get the month of the expense
 
-      // Only add the expense amount to the corresponding month if it's in the current year
-      if (year === currentYear) {
-        expenseArray[month] += expense.amount;
+        // Only add the expense amount to the corresponding month if it's in the current year
+        if (year === currentYear) {
+          expenseArray[month] += expense.amount;
+        }
       }
     }
-  }
 
-  data.value = {
-    labels: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ],
-    datasets: [
-      {
-        label: "Monthly Expense",
-        backgroundColor: "#f87979",
-        data: expenseArray,
-        fill: false,
-        borderColor: "rgb(75, 192, 192)",
-        pointStyle: "rectRounded",
-        pointBackgroundColor: "#8381db",
-        pointBorderColor: "#4e4cb3",
-        tension: 0.1,
-      },
-    ],
-  };
+    data.value = {
+      labels: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
+      datasets: [
+        {
+          label: "Monthly Expense",
+          backgroundColor: "#f87979",
+          data: expenseArray,
+          fill: false,
+          borderColor: "rgb(75, 192, 192)",
+          pointStyle: "rectRounded",
+          pointBackgroundColor: "#8381db",
+          pointBorderColor: "#4e4cb3",
+          tension: 0.1,
+        },
+      ],
+    };
+  });
 });
 
 const options = {
