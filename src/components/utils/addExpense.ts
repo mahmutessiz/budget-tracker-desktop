@@ -3,7 +3,7 @@ import { Ref } from "vue";
 
 interface ExpenseEntry {
   date: string;
-  amount: number;
+  amount: number | null;
   category: string;
 }
 
@@ -15,7 +15,7 @@ interface ExpenseEntry {
  */
 async function pushExpense(
   expense: Ref<ExpenseEntry[]>,
-  amount: Ref<number>,
+  amount: Ref<number | null>,
   category: Ref<string>
 ): Promise<void> {
   const currentDate = new Date();
@@ -41,7 +41,7 @@ const store = new Store(".budget.dat");
  */
 const useAddExpense = async (
   expense: Ref<ExpenseEntry[]>,
-  amount: Ref<number>,
+  amount: Ref<number | null>,
   category: Ref<string>
 ): Promise<void> => {
   // Retrieve the current expense array from the store or initialize it if not present
@@ -55,7 +55,7 @@ const useAddExpense = async (
   await store.save();
 
   // Reset input fields
-  amount.value = 0;
+  amount.value = null;
   category.value = "";
 };
 

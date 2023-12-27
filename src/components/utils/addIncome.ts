@@ -4,7 +4,7 @@ import { Ref } from "vue";
 // Define the structure for income entries
 interface IncomeEntry {
   date: string;
-  amount: number;
+  amount: number | null;
   category: string;
 }
 
@@ -18,7 +18,7 @@ interface IncomeEntry {
  */
 async function pushIncome(
   income: Ref<IncomeEntry[]>,
-  amount: Ref<number>,
+  amount: Ref<number | null>,
   category: Ref<string>
 ): Promise<void> {
   const currentDate = new Date();
@@ -40,7 +40,7 @@ const store = new Store(".budget.dat");
  */
 const useAddIncome = async (
   income: Ref<IncomeEntry[]>,
-  amount: Ref<number>,
+  amount: Ref<number | null>,
   category: Ref<string>
 ): Promise<void> => {
   // Retrieve the current income array from the store or initialize it if not present
@@ -54,7 +54,7 @@ const useAddIncome = async (
   await store.save();
 
   // Reset input fields
-  amount.value = 0;
+  amount.value = null;
   category.value = "";
 };
 
