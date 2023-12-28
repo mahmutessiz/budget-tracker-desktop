@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 /* import { Store } from "tauri-plugin-store-api"; */
-import { useAddExpense } from "../utils/addExpense.ts";
+import { useAddExpense } from "../../utils/addExpense.ts";
 
 const amount = ref();
 const category = ref("");

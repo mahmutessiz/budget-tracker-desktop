@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useAddIncome } from "../utils/addIncome.ts";
+import { useAddIncome } from "../../utils/addIncome.ts";
 
 // Refs to store the income amount and category inputs
 const amount = ref();

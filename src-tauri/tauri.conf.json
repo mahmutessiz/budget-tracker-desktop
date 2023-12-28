@@ -34,7 +34,15 @@
         "title": "budget-tracker",
         "width": 815,
         "height": 600,
-        "alwaysOnTop": true
+        "alwaysOnTop": true,
+        "visible": false
+      },
+      {
+        "width": 815,
+        "height": 600,
+        "decorations": false,
+        "url": "splashscreen.html",
+        "label": "splashscreen"
       }
     ]
   }
