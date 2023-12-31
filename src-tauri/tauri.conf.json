@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "budget-tracker",
-    "version": "0.5.0"
+    "version": "0.5.15"
   },
   "tauri": {
     "allowlist": {
@@ -34,7 +34,6 @@
         "title": "budget-tracker",
         "width": 815,
         "height": 600,
-        "alwaysOnTop": true,
         "visible": false
       },
       {
