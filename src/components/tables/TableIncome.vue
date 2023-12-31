@@ -231,6 +231,8 @@
 <script setup lang="ts">
 import { ref, onMounted, watchEffect } from "vue";
 import { Store } from "tauri-plugin-store-api";
+
+// Component imports
 import AddIncome from "../forms/AddIncome.vue";
 
 // Initialize the store on component mount

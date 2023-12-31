@@ -6,7 +6,7 @@
     <MainHeader class="fixed z-10 w-32" />
     <div class="w-full flex flex-wrap lg:flex-nowrap justify-center ml-32">
       <div class="w-full lg:w-[70%] overflow-x-hidden px-4">
-        <BalanceDisplay />
+        <BalanceDisplay :expenseData="expenseData" :incomeData="incomeData" />
         <BarChart :incomeData="incomeData" :expenseData="expenseData" />
         <div class="flex flex-wrap lg:flex-nowrap gap-4 md:gap-8 mt-12">
           <DoughnutChart :expenseData="expenseData" class="lg:w-[50%]" />

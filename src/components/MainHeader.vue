@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import ThemeSwitch from "./buttons/ThemeSwitch.vue";
 import AddNew from "./buttons/AddNew.vue";
-import SettingsButton from "./buttons/SettingsButton.vue";
 import ReloadPage from "./buttons/ReloadPage.vue";
+import SettingsButton from "./buttons/SettingsButton.vue";
+import ThemeSwitch from "./buttons/ThemeSwitch.vue";
 </script>

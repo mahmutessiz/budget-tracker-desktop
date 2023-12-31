@@ -44,81 +44,45 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { Store } from "tauri-plugin-store-api";
+import { ref, watchEffect } from "vue";
 import AddIncome from "../forms/AddIncome.vue";
 
-// Ref to hold the income data
+// Refs to hold the income and expense data along with their totals
 const income = ref();
-const totalIncome = ref();
-// Ref to hold the expense data
+const totalIncome = ref(0);
 const expense = ref();
-const totalExpense = ref();
+const totalExpense = ref(0);
 
-onMounted(async () => {
-  // Initialize the store on component mount
-  const store = new Store(".budget.dat");
+// Props received from the parent component
+const props = defineProps({
+  expenseData: Object,
+  incomeData: Object,
+});
 
-  // If the income is not already set, retrieve it from the store
-  if (!income.value) {
-    income.value = await store.get("income");
-  }
+// Watch for changes to props and update income & expenses accordingly
+watchEffect(() => {
+  // Assign expense and income data from props to local refs
+  expense.value = props.expenseData;
+  income.value = props.incomeData;
 
-  // Subscribe to store changes and update the income accordingly
-  store.onChange(async () => {
-    income.value = await store.get("income");
-
-    totalIncome.value = income.value.reduce((sum: number, item: any) => {
-      // Check if the amount value exists and is a number
-      if (item.amount && !isNaN(item.amount)) {
-        return sum + parseFloat(item.amount);
-      } else {
-        // If the amount value does not exist or is not a number, just return the current sum
-        return sum;
-      }
-    }, 0);
-  });
-
+  // Calculate the total income by summing up the amount from each income item
   totalIncome.value = income.value.reduce((sum: number, item: any) => {
-    // Check if the amount value exists and is a number
+    // Ensure the amount is a valid number before adding to sum
     if (item.amount && !isNaN(item.amount)) {
       return sum + parseFloat(item.amount);
-    } else {
-      // If the amount value does not exist or is not a number, just return the current sum
-      return sum;
     }
+    // Continue with the current sum if the amount is not a valid number
+    return sum;
   }, 0);
 
-  //0000000000000000000000000000
-
-  // If the expense is not already set, retrieve it from the store
-  if (!expense.value) {
-    expense.value = await store.get("expense");
-  }
-
-  // Subscribe to store changes and update the expense accordingly
-  store.onChange(async () => {
-    expense.value = await store.get("expense");
-
-    totalExpense.value = expense.value.reduce((sum: number, item: any) => {
-      // Check if the amount value exists and is a number
-      if (item.amount && !isNaN(item.amount)) {
-        return sum + parseFloat(item.amount);
-      } else {
-        // If the amount value does not exist or is not a number, just return the current sum
-        return sum;
-      }
-    }, 0);
-  });
-
+  // Calculate the total expense by summing up the amount from each expense item
   totalExpense.value = expense.value.reduce((sum: number, item: any) => {
-    // Check if the amount value exists and is a number
+    // Ensure the amount is a valid number before adding to sum
     if (item.amount && !isNaN(item.amount)) {
       return sum + parseFloat(item.amount);
-    } else {
-      // If the amount value does not exist or is not a number, just return the current sum
-      return sum;
     }
+    // Continue with the current sum if the amount is not a valid number
+    return sum;
   }, 0);
 });
 </script>

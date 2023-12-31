@@ -228,8 +228,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted, watchEffect } from "vue";
-import AddExpense from "../forms/AddExpense.vue";
 import { Store } from "tauri-plugin-store-api";
+
+// Component imports
+import AddExpense from "../forms/AddExpense.vue";
 
 // Ref to hold the expense data
 const expense = ref();
