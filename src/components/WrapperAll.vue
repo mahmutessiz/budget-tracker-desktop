@@ -29,23 +29,24 @@ import { ref, Ref, onMounted } from "vue";
 
 // Importing component modules
 import BalanceDisplay from "./containers/BalanceDisplay.vue";
-import MainHeader from "./MainHeader.vue";
 import BarChart from "./charts/BarChart.vue";
 import DoughnutChart from "./charts/DoughnutChart.vue";
 import LineChart from "./charts/LineChart.vue";
+import MainHeader from "./MainHeader.vue";
 import TableIncome from "./tables/TableIncome.vue";
 import TableExpense from "./tables/TableExpense.vue";
 
 // Importing store to handle income data
-import { useIncomeStore } from "../store/incomeStore";
 import { useExpenseStore } from "../store/expenseStore";
+import { useIncomeStore } from "../store/incomeStore";
 import { Store } from "tauri-plugin-store-api";
 
 // Reactive references to hold income data and loading state
-const incomeData: Ref<any> = ref([]);
 const expenseData: Ref<any> = ref([]);
+const incomeData: Ref<any> = ref([]);
 const isLoading: Ref<boolean> = ref(true);
 const store = new Store(".budget.dat");
+
 // Fetch income data on component mount
 onMounted(async () => {
   await useIncomeStore().getIncome();
