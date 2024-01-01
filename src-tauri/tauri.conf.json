@@ -34,6 +34,7 @@
         "title": "budget-tracker",
         "width": 815,
         "height": 600,
+        "alwaysOnTop": true,
         "visible": false
       },
       {

@@ -14,9 +14,8 @@
         </div>
       </div>
       <div
-        class="w-full lg:w-[18%] flex lg:flex-col justify-center items-start gap-12 mt-12 mb-12 lg:ml-8"
+        class="w-full lg:w-[18%] flex lg:flex-col justify-center items-start gap-12 mt-12 mb-12 lg:ml-8 bg-base-00"
       >
-        <!-- Only render the TableIncome component when the data is loaded -->
         <TableIncome :incomeData="incomeData" />
         <TableExpense :expenseData="expenseData" />
       </div>
@@ -45,6 +44,8 @@ import { Store } from "tauri-plugin-store-api";
 const expenseData: Ref<any> = ref([]);
 const incomeData: Ref<any> = ref([]);
 const isLoading: Ref<boolean> = ref(true);
+
+// Initialize the store
 const store = new Store(".budget.dat");
 
 // Fetch income data on component mount

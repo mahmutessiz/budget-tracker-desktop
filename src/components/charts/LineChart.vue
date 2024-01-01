@@ -23,6 +23,7 @@ import {
 import { Line } from "vue-chartjs";
 
 const expenseData: Ref<any> = ref({});
+
 // Define props for the component that will receive the expense data
 const expenseDataProps = defineProps({
   expenseData: Object,
