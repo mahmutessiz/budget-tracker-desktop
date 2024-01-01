@@ -52,8 +52,10 @@ onMounted(async () => {
     // Initialize an array with 12 zeros
     let expenseArray = Array(12).fill(0);
 
-    // Get the current year
-    let currentYear = new Date().getFullYear();
+    // Get the current year and month
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let currentMonth = currentDate.getMonth();
 
     // If there is expense data, update the expenseArray
     if (expenseData.value) {
@@ -69,6 +71,16 @@ onMounted(async () => {
       }
     }
 
+    // Find the first non-zero month
+    let firstNonZeroMonth = expenseArray.findIndex((month) => month !== 0);
+
+    // Display the chart from 3 months before the first non-zero month
+    let startMonth = Math.max(0, firstNonZeroMonth - 3);
+
+    // Limit the display of zero values to a maximum of 4 months
+    let endMonth = Math.min(currentMonth + 4, 11);
+
+    // Update the chart data with the new expense array
     data.value = {
       labels: [
         "January",
@@ -83,18 +95,18 @@ onMounted(async () => {
         "October",
         "November",
         "December",
-      ],
+      ].slice(startMonth, endMonth + 1),
       datasets: [
         {
           label: "Monthly Expense",
           backgroundColor: "#f87979",
-          data: expenseArray,
+          data: expenseArray.slice(startMonth, endMonth + 1),
           fill: false,
           borderColor: "rgb(75, 192, 192)",
           pointStyle: "rectRounded",
           pointBackgroundColor: "#8381db",
           pointBorderColor: "#4e4cb3",
-          tension: 0.1,
+          tension: 0.2,
         },
       ],
     };
