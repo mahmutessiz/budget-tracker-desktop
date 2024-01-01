@@ -9,9 +9,8 @@
 import BalanceInfo from "../InfoComponents/BalanceInfo.vue";
 import SpendingInfo from "../InfoComponents/SpendingInfo.vue";
 
-const dataFromProps = defineProps({
+defineProps({
   expenseData: Object,
   incomeData: Object,
 });
-console.log(dataFromProps.expenseData, dataFromProps.incomeData);
 </script>
