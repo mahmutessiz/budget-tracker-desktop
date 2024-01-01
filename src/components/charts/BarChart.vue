@@ -74,21 +74,40 @@ onMounted(async () => {
     let expenseArray = Array(12).fill(0);
     let incomeArray = Array(12).fill(0);
 
-    // Populate the expenseArray with data from expenseData
-    if (expenseData.value) {
-      for (let expense of expenseData.value) {
-        let month = new Date(expense.date).getMonth();
-        expenseArray[month] += expense.amount;
-      }
-    }
+    // Get the current year and month
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let currentMonth = currentDate.getMonth();
 
-    // Populate the incomeArray with data from incomeData
-    if (incomeData.value) {
-      for (let income of incomeData.value) {
-        let month = new Date(income.date).getMonth();
-        incomeArray[month] += income.amount;
+    // Function to populate array with data
+    const populateArray = (dataArray: any, arrayToUpdate: any) => {
+      if (dataArray.value) {
+        for (let data of dataArray.value) {
+          let date = new Date(data.date);
+          // Only consider data from the current year
+          if (date.getFullYear() === currentYear) {
+            let month = date.getMonth();
+            arrayToUpdate[month] += data.amount;
+          }
+        }
       }
-    }
+    };
+
+    // Populate the expenseArray and incomeArray
+    populateArray(expenseData, expenseArray);
+    populateArray(incomeData, incomeArray);
+
+    // Find the first non-zero month
+    let firstNonZeroMonth = Math.min(
+      expenseArray.findIndex((month) => month !== 0),
+      incomeArray.findIndex((month) => month !== 0)
+    );
+
+    // Display the chart from 3 months before the first non-zero month
+    let startMonth = Math.max(0, firstNonZeroMonth - 3);
+
+    // Limit the display of zero values to a maximum of 4 months
+    let endMonth = Math.min(currentMonth + 4, 11);
 
     // Update the chart data with the new expense and income arrays
     data.value = {
@@ -105,17 +124,17 @@ onMounted(async () => {
         "October",
         "November",
         "December",
-      ],
+      ].slice(startMonth, endMonth + 1),
       datasets: [
         {
           label: "Spendings",
           backgroundColor: "#f87979",
-          data: expenseArray,
+          data: expenseArray.slice(startMonth, endMonth + 1),
         },
         {
           label: "Incomes",
           backgroundColor: "#00d8ff",
-          data: incomeArray,
+          data: incomeArray.slice(startMonth, endMonth + 1),
         },
       ],
     };
