@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, Ref, watchEffect } from "vue";
-
+import { useI18n } from "vue-i18n";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,6 +23,8 @@ import {
 import { Line } from "vue-chartjs";
 
 const expenseData: Ref<any> = ref({});
+
+const { t } = useI18n();
 
 // Define props for the component that will receive the expense data
 const expenseDataProps = defineProps({
@@ -84,22 +86,22 @@ onMounted(async () => {
     // Update the chart data with the new expense array
     data.value = {
       labels: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
+        t("january"),
+        t("february"),
+        t("march"),
+        t("april"),
+        t("may"),
+        t("june"),
+        t("july"),
+        t("august"),
+        t("september"),
+        t("october"),
+        t("november"),
+        t("december"),
       ].slice(startMonth, endMonth + 1),
       datasets: [
         {
-          label: "Monthly Expense",
+          label: t("spendings"),
           backgroundColor: "#f87979",
           data: expenseArray.slice(startMonth, endMonth + 1),
           fill: false,
@@ -111,19 +113,29 @@ onMounted(async () => {
         },
       ],
     };
+    options.value = {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        title: {
+          display: true,
+          text: t("monthly_spendings"),
+        },
+      },
+    };
   });
 });
 
-const options = {
+const options = ref({
   responsive: true,
   maintainAspectRatio: true,
   plugins: {
     title: {
       display: true,
-      text: "Monthly Expense",
+      text: t("monthly_spendings"),
     },
   },
-};
+});
 
 ChartJS.register(
   CategoryScale,

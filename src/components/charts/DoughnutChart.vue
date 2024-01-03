@@ -6,7 +6,8 @@
 
 <script setup lang="ts">
 // Import necessary Vue composition API and Tauri plugin
-import { ref, onMounted, watchEffect } from "vue";
+import { ref, onMounted, watchEffect, Ref } from "vue";
+import { useI18n } from "vue-i18n";
 
 // Import necessary Chart.js components and types
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -21,6 +22,7 @@ const expenseData = defineProps({
   expenseData: Object,
 });
 
+const { t } = useI18n();
 const data = ref({
   // Initial chart data with labels and datasets
   labels: ["VueJs", "EmberJs", "ReactJs", "AngularJs"],
@@ -81,11 +83,26 @@ onMounted(async () => {
         },
       ],
     };
+    options.value = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: "left",
+        },
+        title: {
+          display: true,
+          text: t("expense_by_category"),
+          position: "top",
+        },
+      },
+    };
   });
 });
 
 // Chart options configuration
-const options: ChartOptions<"doughnut"> = {
+const options: Ref<ChartOptions<"doughnut">> = ref({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
@@ -95,10 +112,11 @@ const options: ChartOptions<"doughnut"> = {
     },
     title: {
       display: true,
-      text: "Expense Categories",
+      text: t("expense_by_category"),
+      position: "top",
     },
   },
-};
+});
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);

@@ -1,7 +1,7 @@
 <template>
   <div
     class="tooltip tooltip-right flex items-center justify-center gap-1"
-    data-tip="Reload"
+    :data-tip="t('reload')"
   >
     <button class="btn btn-ghost justify-center" @click="reloadPage">
       <svg
@@ -21,6 +21,9 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 const reloadPage = () => {
   window.location.reload();
 };

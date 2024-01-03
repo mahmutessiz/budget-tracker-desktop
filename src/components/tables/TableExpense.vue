@@ -116,14 +116,16 @@
       <caption
         class="w-full bg-primary text-primary-content font-bold text-lg rounded-sm"
       >
-        Expense
+        {{
+          $t("spendings")
+        }}
       </caption>
       <thead>
         <tr>
           <th></th>
-          <th>Date</th>
-          <th>Category</th>
-          <th>Amount</th>
+          <th>{{ $t("date") }}</th>
+          <th>{{ $t("category") }}</th>
+          <th>{{ $t("amount") }}</th>
           <th>
             <button type="button" onclick="my_modal_table_expense.showModal()">
               <svg
@@ -216,8 +218,7 @@
   </div>
   <dialog id="my_modal_table_expense" class="modal">
     <div class="modal-box">
-      <h3 class="font-bold text-lg">Hello!</h3>
-      <p class="py-4">Press ESC key or click outside to close</p>
+      <p class="py-4">{{ $t("click_outside_to_close") }}</p>
       <AddExpense />
     </div>
     <form method="dialog" class="modal-backdrop">

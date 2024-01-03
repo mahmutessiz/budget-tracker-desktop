@@ -2,7 +2,7 @@
   <form @submit.prevent="addexpense" class="flex flex-col gap-4">
     <div class="flex items-center gap-2">
       <label for="amount" class="text-sm font-semibold text-gray-700"
-        >Amount:</label
+        >{{ $t("amount") }}:</label
       ><br />
       <input
         id="amount"
@@ -15,7 +15,7 @@
     </div>
     <div class="flex items-center gap-2">
       <label for="category" class="text-sm font-semibold text-gray-700"
-        >Category:</label
+        >{{ $t("category") }}:</label
       >
       <input
         id="category"
@@ -25,7 +25,9 @@
         class="input input-bordered input-secondary w-full"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Add expense</button>
+    <button type="submit" class="btn btn-primary">
+      {{ $t("add_transaction") }}
+    </button>
   </form>
 </template>
 

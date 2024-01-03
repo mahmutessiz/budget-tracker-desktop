@@ -1,7 +1,9 @@
 <template>
   <div class="stats bg-primary text-primary-content">
     <div class="stat">
-      <div class="stat-title text-primary-content">Total spending</div>
+      <div class="stat-title text-primary-content">
+        {{ $t("total_spendings") }}
+      </div>
       <div class="stat-value text-primary-content">
         ${{ totalExpense ? totalExpense.toLocaleString() : 0 }}
       </div>
@@ -10,19 +12,18 @@
           class="btn btn-sm btn-neutral text-neutral-content"
           onclick="my_modal_4.showModal()"
         >
-          Add Transaction
+          {{ $t("add_transaction") }}
         </button>
       </div>
     </div>
   </div>
   <dialog id="my_modal_4" class="modal">
     <div class="modal-box">
-      <h3 class="font-bold text-lg">Hello!</h3>
-      <p class="py-4">Press ESC key or click outside to close</p>
+      <p class="py-4">{{ $t("click_outside_to_close") }}</p>
       <AddExpense />
     </div>
     <form method="dialog" class="modal-backdrop">
-      <button>close</button>
+      <button>{{ $t("close") }}</button>
     </form>
   </dialog>
 </template>

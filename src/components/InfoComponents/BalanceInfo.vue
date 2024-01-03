@@ -1,7 +1,9 @@
 <template>
   <div class="stats bg-accent text-accent-content">
     <div class="stat text-accent-content">
-      <div class="stat-title text-accent-content">Current balance</div>
+      <div class="stat-title text-accent-content">
+        {{ $t("current_balance") }}
+      </div>
       <div class="stat-value text-accent-content">
         ${{
           isNaN(totalIncome - totalExpense)
@@ -14,13 +16,15 @@
           class="btn btn-sm btn-neutral text-neutral-content"
           onclick="my_modal_3.showModal()"
         >
-          Add funds
+          {{ $t("add_funds") }}
         </button>
       </div>
     </div>
 
     <div class="stat text-accent-content">
-      <div class="stat-title text-accent-content">Total Income</div>
+      <div class="stat-title text-accent-content">
+        {{ $t("total_balance") }}
+      </div>
       <div class="stat-value">
         ${{ totalIncome ? totalIncome.toLocaleString() : 0 }}
       </div>
@@ -33,12 +37,11 @@
 
   <dialog id="my_modal_3" class="modal">
     <div class="modal-box">
-      <h3 class="font-bold text-lg">Hello!</h3>
-      <p class="py-4">Press ESC key or click outside to close</p>
+      <p class="py-4">{{ $t("click_outside_to_close") }}</p>
       <AddIncome />
     </div>
     <form method="dialog" class="modal-backdrop">
-      <button>close</button>
+      <button>{{ $t("close") }}</button>
     </form>
   </dialog>
 </template>

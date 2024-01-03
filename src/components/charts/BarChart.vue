@@ -14,6 +14,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, watchEffect, Ref } from "vue";
+import { useI18n } from "vue-i18n";
 
 import {
   Chart as ChartJS,
@@ -25,6 +26,8 @@ import {
   LinearScale,
 } from "chart.js";
 import { Bar } from "vue-chartjs";
+
+const { t } = useI18n();
 
 // Chart data representation
 const data = ref({
@@ -44,7 +47,7 @@ const data = ref({
   ],
   datasets: [
     {
-      label: "Spendings",
+      label: t("spending_history"),
       backgroundColor: "#f87979",
       data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
     },
@@ -112,27 +115,27 @@ onMounted(async () => {
     // Update the chart data with the new expense and income arrays
     data.value = {
       labels: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
+        t("january"),
+        t("february"),
+        t("march"),
+        t("april"),
+        t("may"),
+        t("june"),
+        t("july"),
+        t("august"),
+        t("september"),
+        t("october"),
+        t("november"),
+        t("december"),
       ].slice(startMonth, endMonth + 1),
       datasets: [
         {
-          label: "Spendings",
+          label: t("spendings"),
           backgroundColor: "#f87979",
           data: expenseArray.slice(startMonth, endMonth + 1),
         },
         {
-          label: "Incomes",
+          label: t("income"),
           backgroundColor: "#00d8ff",
           data: incomeArray.slice(startMonth, endMonth + 1),
         },

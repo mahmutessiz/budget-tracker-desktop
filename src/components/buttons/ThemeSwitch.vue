@@ -3,7 +3,7 @@
     <div class="dropdown">
       <div
         class="tooltip tooltip-right flex items-center justify-center gap-1"
-        data-tip="Change theme"
+        :data-tip="t('theme')"
       >
         <div tabindex="0" role="button" class="btn">
           <svg
@@ -114,6 +114,9 @@
 <script setup lang="ts">
 import { ref, onMounted, Ref } from "vue";
 import { Store } from "tauri-plugin-store-api";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 const theme: Ref<any> = ref("valentine"); // default theme
 

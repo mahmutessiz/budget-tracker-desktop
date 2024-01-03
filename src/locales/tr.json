@@ -1,0 +1,53 @@
+{
+  "total_balance": "Toplam Gelir",
+  "account_balance": "Hesap bakiyesi",
+  "add_funds": "Fon Ekle",
+  "month": "Ay",
+  "total_spendings": "Toplam harcamalar",
+  "add_transaction": "İşlem Ekle",
+  "click_outside_to_close": "Kapatmak için dışarıya tıklayın",
+  "close": "Kapat",
+  "current_balance": "Kalan gelir",
+
+  "category_name": "Kategori adı",
+  "expense_by_category": "Kategoriye göre harcamalar",
+  "monthly_spendings": "Aylık toplam harcamalar",
+  "amount": "Miktar",
+  "submit": "Gönder",
+  "settings": "Ayarlar",
+  "reload": "Yenile",
+
+  "income": "Gelir",
+
+  "transaction": "İşlem",
+  "theme": "Tema",
+
+  "add_new": "Yeni Ekle",
+
+  "transactions": "İşlemler",
+  "date": "Tarih",
+  "category": "Kategori",
+
+  "january": "Ocak",
+  "february": "Şubat",
+  "march": "Mart",
+  "april": "Nisan",
+  "may": "Mayıs",
+  "june": "Haziran",
+  "july": "Temmuz",
+  "august": "Ağustos",
+  "september": "Eylül",
+  "october": "Ekim",
+  "november": "Kasım",
+  "december": "Aralık",
+
+  "income_history": "Gelir geçmişi",
+
+  "click": "tıkla",
+
+  "spending_history": "Harcama geçmişi",
+  "spendings": "Harcamalar",
+
+  "expense": "Harcama",
+  "delete_all_data": "Tüm verileri sil"
+}

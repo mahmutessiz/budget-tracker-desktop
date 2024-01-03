@@ -3,7 +3,7 @@
     <div class="dropdown">
       <div
         class="tooltip tooltip-right flex items-center justify-center gap-1"
-        data-tip="Add new"
+        :data-tip="t('add_new')"
       >
         <div tabindex="0" role="button" class="btn">
           <svg
@@ -48,4 +48,6 @@
 <script setup lang="ts">
 import ExpenseButton from "./ExpenseButton.vue";
 import IncomeButton from "./IncomeButton.vue";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 </script>

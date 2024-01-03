@@ -3,7 +3,7 @@
     <div tabindex="0" role="button" class="btn m-1">
       <div
         class="tooltip tooltip-right flex items-center justify-center gap-1"
-        data-tip="Settings"
+        :data-tip="t('settings')"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@
       <li class="flex items-center justify-center">
         <div
           class="tooltip tooltip-right tooltip-error w-fit"
-          data-tip="Delete all of the data entered"
+          :data-tip="t('delete_all_data')"
         >
           <ClearAll />
         </div>
@@ -48,4 +48,7 @@
 
 <script setup lang="ts">
 import ClearAll from "./ClearAll.vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 </script>
