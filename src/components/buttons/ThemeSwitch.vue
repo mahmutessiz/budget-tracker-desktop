@@ -84,8 +84,8 @@
             type="radio"
             name="theme-dropdown"
             class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-            aria-label="Bumblebee"
-            value="bumblebee"
+            aria-label="Wireframe"
+            value="wireframe"
           />
         </li>
         <li>
@@ -93,8 +93,8 @@
             type="radio"
             name="theme-dropdown"
             class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-            aria-label="Halloween"
-            value="halloween"
+            aria-label="Luxury"
+            value="luxury"
           />
         </li>
         <li>
@@ -104,6 +104,15 @@
             class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
             aria-label="Dim"
             value="dim"
+          />
+        </li>
+        <li>
+          <input
+            type="radio"
+            name="theme-dropdown"
+            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+            aria-label="Sunset"
+            value="sunset"
           />
         </li>
       </ul>
