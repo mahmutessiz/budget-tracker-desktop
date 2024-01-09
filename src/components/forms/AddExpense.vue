@@ -40,5 +40,9 @@ const amount = ref();
 const category = ref("");
 const expense: any = ref([]);
 
-const addexpense = async () => await useAddExpense(expense, amount, category);
+const addexpense = async () => {
+  category.value =
+    category.value.charAt(0).toUpperCase() + category.value.slice(1);
+  await useAddExpense(expense, amount, category);
+};
 </script>

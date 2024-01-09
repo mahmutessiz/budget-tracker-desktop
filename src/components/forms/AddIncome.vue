@@ -38,5 +38,9 @@ const category = ref("");
 // Ref to store the array of income entries
 const income: any = ref([]);
 
-const addIncome = async () => await useAddIncome(income, amount, category);
+const addIncome = async () => {
+  category.value =
+    category.value.charAt(0).toUpperCase() + category.value.slice(1);
+  await useAddIncome(income, amount, category);
+};
 </script>
