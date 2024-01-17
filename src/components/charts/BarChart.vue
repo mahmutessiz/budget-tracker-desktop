@@ -145,10 +145,10 @@ onMounted(async () => {
 });
 
 // Chart options configuration
-const options = {
+const options = ref({
   responsive: true,
   maintainAspectRatio: true,
-};
+});
 
 // Register required components for ChartJS
 ChartJS.register(

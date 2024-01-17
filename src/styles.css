@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "attari-sales";
+  src: local(), url("./assets/fonts/Attari_Salees.ttf");
+}
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
 
@@ -30,4 +35,8 @@ html {
 }
 body {
   width: 100%;
+}
+
+[data-theme="wireframe"] {
+  font-family: attari-sales, fantasy;
 }

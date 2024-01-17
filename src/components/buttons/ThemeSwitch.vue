@@ -127,7 +127,7 @@ import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 
-const theme: Ref<any> = ref("valentine"); // default theme
+const theme: Ref<any> = ref(""); // default theme
 
 onMounted(async () => {
   const store = new Store(".budget.dat");
