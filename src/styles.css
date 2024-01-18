@@ -3,8 +3,24 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "attari-sales";
-  src: local(), url("./assets/fonts/Attari_Salees.ttf");
+  font-family: "attari_salees";
+  src: url("./assets/fonts/Attari_Salees.eot");
+  src: url("./assets/fonts/Attari_Salees.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/Attari_Salees.ttf") format("truetype"),
+    url("./assets/fonts/Attari_Salees.woff") format("woff"),
+    url("./assets/fonts/Attari_Salees.woff2") format("woff2"),
+    url("./assets/fonts/Attari_Salees.svg") format("svg");
+}
+@font-face {
+  font-family: "Architects Daughter";
+  src: url("./assets/fonts/ArchitectsDaughter-Regular.eot");
+  src: url("./assets/fonts/ArchitectsDaughter-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/ArchitectsDaughter-Regular.ttf") format("truetype"),
+    url("./assets/fonts/ArchitectsDaughter-Regular.woff") format("woff"),
+    url("./assets/fonts/ArchitectsDaughter-Regular.woff2") format("woff2"),
+    url("./assets/fonts/ArchitectsDaughter-Regular.svg") format("svg");
 }
 
 :root {
@@ -38,5 +54,5 @@ body {
 }
 
 [data-theme="wireframe"] {
-  font-family: attari-sales, fantasy;
+  font-family: "Architects Daughter", "inter", sans-serif;
 }

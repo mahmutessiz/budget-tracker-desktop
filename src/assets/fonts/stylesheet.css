@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Architects Daughter';
+    src: url('ArchitectsDaughter-Regular.eot');
+    src: url('ArchitectsDaughter-Regular.eot?#iefix') format('embedded-opentype'),
+        url('ArchitectsDaughter-Regular.woff2') format('woff2'),
+        url('ArchitectsDaughter-Regular.woff') format('woff'),
+        url('ArchitectsDaughter-Regular.ttf') format('truetype'),
+        url('ArchitectsDaughter-Regular.svg#ArchitectsDaughter-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Attari_Salees';
+    src: url('Attari_Salees.eot');
+    src: url('Attari_Salees.eot?#iefix') format('embedded-opentype'),
+        url('Attari_Salees.woff2') format('woff2'),
+        url('Attari_Salees.woff') format('woff'),
+        url('Attari_Salees.ttf') format('truetype'),
+        url('Attari_Salees.svg#Attari_Salees') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

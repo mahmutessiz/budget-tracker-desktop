@@ -40,6 +40,16 @@ import { useExpenseStore } from "../store/expenseStore";
 import { useIncomeStore } from "../store/incomeStore";
 import { Store } from "tauri-plugin-store-api";
 
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
+
 // Reactive references to hold income data and loading state
 const expenseData: Ref<any> = ref([]);
 const incomeData: Ref<any> = ref([]);
@@ -50,6 +60,15 @@ const store = new Store(".budget.dat");
 
 // Fetch income data on component mount
 onMounted(async () => {
+  let chartFontTheme = await store.get("theme");
+  if (chartFontTheme == "wireframe") {
+    ChartJS.defaults.font.family = "Architects Daughter";
+    ChartJS.defaults.font.size = 16;
+    ChartJS.defaults.color = "black";
+  } else {
+    ChartJS.defaults.font.family = "monospace";
+  }
+
   await useIncomeStore().getIncome();
   incomeData.value = useIncomeStore().income;
   await useExpenseStore().getExpense();
@@ -58,8 +77,20 @@ onMounted(async () => {
   store.onChange(async () => {
     incomeData.value = await store.get("income");
     expenseData.value = await store.get("expense");
+    chartFontTheme = await store.get("theme");
+    console.log(chartFontTheme);
   });
 
   isLoading.value = false; // Set loading state to false once the data is loaded
 });
+
+// Register required components for ChartJS
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 </script>
