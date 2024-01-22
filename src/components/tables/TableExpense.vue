@@ -230,7 +230,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watchEffect } from "vue";
 import { Store } from "tauri-plugin-store-api";
-
 // Component imports
 import AddExpense from "../forms/AddExpense.vue";
 
