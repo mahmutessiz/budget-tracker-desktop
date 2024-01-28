@@ -78,7 +78,6 @@ onMounted(async () => {
     incomeData.value = await store.get("income");
     expenseData.value = await store.get("expense");
     chartFontTheme = await store.get("theme");
-    console.log(chartFontTheme);
   });
 
   isLoading.value = false; // Set loading state to false once the data is loaded
