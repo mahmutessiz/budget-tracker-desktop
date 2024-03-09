@@ -69,7 +69,8 @@ watchEffect(() => {
   income.value = props.incomeData;
 
   // Calculate the total income by summing up the amount from each income item
-  totalIncome.value = income.value.reduce((sum: number, item: any) => {
+  if (income.value) {
+     totalIncome.value = income.value.reduce((sum: number, item: any) => {
     // Ensure the amount is a valid number before adding to sum
     if (item.amount && !isNaN(item.amount)) {
       return sum + parseFloat(item.amount);
@@ -77,9 +78,12 @@ watchEffect(() => {
     // Continue with the current sum if the amount is not a valid number
     return sum;
   }, 0);
+  }
+ 
 
   // Calculate the total expense by summing up the amount from each expense item
-  totalExpense.value = expense.value.reduce((sum: number, item: any) => {
+  if (expense.value) {
+    totalExpense.value = expense.value.reduce((sum: number, item: any) => {
     // Ensure the amount is a valid number before adding to sum
     if (item.amount && !isNaN(item.amount)) {
       return sum + parseFloat(item.amount);
@@ -87,5 +91,7 @@ watchEffect(() => {
     // Continue with the current sum if the amount is not a valid number
     return sum;
   }, 0);
+  }
+  
 });
 </script>

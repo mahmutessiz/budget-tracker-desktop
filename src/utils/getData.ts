@@ -23,7 +23,7 @@ export default function useIncome() {
     });
 
     // Calculate the total income
-    totalIncome.value = income.value.reduce((sum: number, item: any) => {
+    totalIncome.value = await income.value.reduce((sum: number, item: any) => {
       // Check if the amount value exists and is a number
       if (item.amount && !isNaN(item.amount)) {
         return sum + parseFloat(item.amount);
