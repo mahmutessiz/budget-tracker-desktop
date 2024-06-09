@@ -45,7 +45,7 @@ Budget Tracker is a lightweight, fast, and user-friendly application to manage y
 4. Build the app:
 
 ```sh
-   npm run build
+   npm run tauri build
 ```
 
 ### Or download the app directly
